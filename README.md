@@ -102,12 +102,39 @@ The installed Codex model catalog remains authoritative. If a preferred model is
 
 ### Install
 
+Try it without cloning:
+
+```bash
+npx codex-smart-router
+```
+
+The command downloads the package temporarily and runs the `codex-smart` CLI. To install the command globally instead:
+
+```bash
+npm install --global codex-smart-router
+codex-smart
+```
+
+If you want a local checkout:
+
 ```bash
 git clone https://github.com/giovannimirarchi420/codex-smart-router
 cd codex-smart-router
 npm install
 npm link
 ```
+
+### Publish a new version
+
+From a clean checkout, verify the package and publish it from an npm account with permission to the package name:
+
+```bash
+npm login
+npm pack --dry-run
+npm publish --access public
+```
+
+For subsequent releases, increment `version` first (for example, `npm version patch`), then run `npm publish --access public` again. After publishing, test the public install path with `npx codex-smart-router`.
 
 For the recommended low-cost Responses API classifier:
 
@@ -128,6 +155,23 @@ All normal Codex arguments pass through unchanged:
 codex-smart -C /path/to/repo
 codex-smart "Fix the failing test"
 ```
+
+## FAQ
+
+### Why not just use `gpt-5.4-mini` for everything?
+
+Because the cheapest model is not the same thing as the cheapest workflow.
+
+`gpt-5.4-mini` is fine for many prompts, and this router still uses it for easy work. The problem is the tail: harder turns, repo-wide reasoning, and ambiguous debugging often burn more time through retries, corrections, and manual intervention when you force everything through one small model.
+
+This project exists to make the model choice explicit and per-turn:
+
+- easy work stays cheap;
+- harder work gets more capable reasoning;
+- you keep the normal Codex CLI experience;
+- you can inspect, override, and audit the decision.
+
+If your workload is already uniform and simple, a fixed `gpt-5.4-mini` setup may be enough. If it varies, routing is a way to reduce waste without giving up capability on the turns that need it.
 
 ## Try it without running a task
 

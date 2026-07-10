@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "Semantic LLM-based per-turn model and reasoning router for Codex CLI",
   "type": "module",
+  "files": [
+    "bin/",
+    "src/",
+    "assets/route-schema.json",
+    "README.md",
+    "PUBLIC_DOCUMENTATION.md",
+    "CHANGELOG.md"
+  ],
   "bin": {
     "codex-smart": "bin/codex-smart.mjs"
   },
@@ -17,5 +25,13 @@
   "dependencies": {
     "ws": "^8.18.3"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giovannimirarchi420/codex-smart-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/giovannimirarchi420/codex-smart-router/issues"
+  },
+  "homepage": "https://github.com/giovannimirarchi420/codex-smart-router#readme"
 }
