@@ -1,14 +1,18 @@
 # Codex Smart Router
 
+![Terminal recording: Codex Smart Router routes a prompt and reports dashboard savings](./assets/codex-smart-router-demo.gif)
+
 <p align="center">
-  <strong>Give every Codex CLI prompt the model it deserves.</strong><br>
-  Semantic routing for lower cost, better reasoning, and measurable results.
+  <strong>Cut estimated Codex CLI token costs by 71.8% on real routed work.</strong><br>
+  Per-turn model selection, native Codex UX, and a local savings dashboard.
 </p>
 
 <p align="center">
   <a href="#quick-start">Quick start</a> ·
+  <a href="#benchmark-one-workload-three-strategies">Benchmark</a> ·
   <a href="#how-it-works">How it works</a> ·
   <a href="#dashboard">Dashboard</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
   <a href="#contributing">Contributing</a>
 </p>
 
@@ -18,11 +22,29 @@
   <img src="https://img.shields.io/badge/status-experimental-orange" alt="Experimental status">
 </p>
 
-Codex Smart Router is a local semantic control layer for [Codex CLI](https://github.com/openai/codex). Before each turn, a low-cost classifier understands the work and selects an execution model and reasoning effort suited to its difficulty.
+Codex Smart Router is a local semantic control layer for [Codex CLI](https://github.com/openai/codex). In a 32-turn local Codex CLI audit, it cut estimated token cost from **USD 6.83** on a naive frontier baseline to **USD 1.92** including classifier overhead: **USD 4.90 / 71.8% saved**. Before each turn, a low-cost classifier understands the work and selects an execution model and reasoning effort suited to its difficulty.
 
 Small requests stay economical. Hard work gets stronger reasoning. A local browser dashboard shows whether the trade-off is actually worth it.
 
 > **Experimental software.** Codex App Server integration and model availability can change as Codex evolves. Measure results in your own workload before relying on the router for production-critical automation.
+
+## Benchmark: one workload, three strategies
+
+The first benchmark is deliberately small and fully disclosed: 32 local Codex CLI turns on 2026-07-10, with the router choosing `gpt-5.4-mini`, `gpt-5.6-luna`, and `gpt-5.6-terra`. Costs use the pricing in [`src/dashboard.mjs`](src/dashboard.mjs), include 19 classifier calls, and apply the same observed token mix to each fixed-model baseline. “Completed” means the App Server reported `completed`; it is an operational completion signal, not a human quality judgment.
+
+| Strategy | Estimated cost | Cost vs. router | Completed turns |
+| --- | ---: | ---: | ---: |
+| Naive cheap model (`gpt-5.4-mini`) | USD 1.20* | -37.6% | Not measured* |
+| Smart router | **USD 1.92** | **Baseline** | **28 / 32 (87.5%)** |
+| Naive frontier model (`gpt-5.5`) | USD 6.83 | +254.8% | Not measured* |
+
+\*These are counterfactual cost estimates, not model replays; the audit only contains executions actually routed. A fixed-model quality comparison will be published once the same prompt suite has been replayed and reviewed. Until then, this table makes no claim that the router improves task success over either fixed model.
+
+Reproduce the routed result from your own private audit log:
+
+```bash
+node --input-type=module -e 'import { readAuditStats } from "./src/audit.mjs"; import { buildDashboard } from "./src/dashboard.mjs"; console.log(buildDashboard(await readAuditStats()).estimate)'
+```
 
 ## Why use it?
 

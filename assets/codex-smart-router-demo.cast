@@ -1,0 +1,7 @@
+{"version":3,"term":{"cols":100,"rows":28,"type":"dumb"},"timestamp":1783697236,"idle_time_limit":1.0,"command":"node scripts/record-readme-demo.mjs","title":"Codex Smart Router demo","env":{"SHELL":"/bin/zsh"}}
+[0.077086, "o", "\u001bc"]
+[0.000021, "o", "$ codex-smart route \"Find the failing dashboard test and fix the cost calculation\"\r\n"]
+[21.329349, "o", "\r\n  routed to gpt-5.6-luna (low)\r\n  tier: balanced | confidence: 89%\r\n"]
+[0.90144, "o", "\r\n$ codex-smart dashboard\r\n"]
+[0.457989, "o", "\r\ncodex-smart dashboard\r\n====================\r\nTurns: 32 | Routes: 33\r\nModels: gpt-5.4-mini=20, gpt-5.6-terra=3, gpt-5.6-luna=10\r\nRouting coverage: 100.0%\r\nAverage confidence: 92.4%\r\nClassifier overhead: 7558 ms/turn\r\nEstimated routed cost: USD 1.92\r\nEstimated savings vs gpt-5.5: USD 4.90 (71.8%)\r\nEstimate uses standard API token prices; verify against your provider invoice.\r\n"]
+[2.506664, "x", "0"]
