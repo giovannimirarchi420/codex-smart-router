@@ -138,9 +138,8 @@ The built-in dashboard turns routing into an evidence-based decision. It runs lo
 
 ### Screenshot
 
-```md
 ![Dashboard screenshot](./assets/dashboard-screenshot.png)
-```
+
 
 ```bash
 codex-smart dashboard
