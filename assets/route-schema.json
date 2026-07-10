@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "tier": {
+      "type": "string",
+      "enum": ["economy", "balanced", "complex", "frontier"]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "taskType": {
+      "type": "string",
+      "enum": [
+        "conversation",
+        "lookup",
+        "transformation",
+        "implementation",
+        "debugging",
+        "infrastructure",
+        "research",
+        "architecture",
+        "high_risk",
+        "other"
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    }
+  },
+  "required": ["tier", "confidence", "taskType", "rationale"],
+  "additionalProperties": false
+}

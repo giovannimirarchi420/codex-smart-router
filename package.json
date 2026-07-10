@@ -1,0 +1,21 @@
+{
+  "name": "codex-smart-router",
+  "version": "0.2.0",
+  "description": "Semantic LLM-based per-turn model and reasoning router for Codex CLI",
+  "type": "module",
+  "bin": {
+    "codex-smart": "bin/codex-smart.mjs"
+  },
+  "scripts": {
+    "test": "node --test test/router.test.mjs test/classifier.test.mjs test/proxy.test.mjs test/audit.test.mjs test/dashboard.test.mjs",
+    "test:integration": "node --test test/app-server.integration.test.mjs",
+    "check": "node --check bin/codex-smart.mjs && node --check src/router.mjs && node --check src/classifier.mjs && node --check src/catalog.mjs && node --check src/proxy.mjs && node --check src/audit.mjs && node --check src/dashboard.mjs && node --check src/dashboard-server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  },
+  "license": "Apache-2.0"
+}
