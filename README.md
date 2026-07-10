@@ -81,7 +81,7 @@ The installed Codex model catalog remains authoritative. If a preferred model is
 ### Install
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/giovannimirarchi420/codex-smart-router
 cd codex-smart-router
 npm install
 npm link
