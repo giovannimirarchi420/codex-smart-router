@@ -9,7 +9,8 @@
     "assets/route-schema.json",
     "README.md",
     "PUBLIC_DOCUMENTATION.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "LAUNCH_POST.md"
   ],
   "bin": {
     "codex-smart": "bin/codex-smart.mjs"

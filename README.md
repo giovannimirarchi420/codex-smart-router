@@ -3,7 +3,7 @@
 ![Terminal recording: Codex Smart Router routes a prompt and reports dashboard savings](./assets/codex-smart-router-demo.gif)
 
 <p align="center">
-  <strong>Cut estimated Codex CLI token costs by 71.8% on real routed work.</strong><br>
+  <strong>Cut estimated Codex CLI token costs by 68.0% across 42 turns of repo work.</strong><br>
   Per-turn model selection, native Codex UX, and a local savings dashboard.
 </p>
 
@@ -22,7 +22,7 @@
   <img src="https://img.shields.io/badge/status-experimental-orange" alt="Experimental status">
 </p>
 
-Codex Smart Router is a local semantic control layer for [Codex CLI](https://github.com/openai/codex). In a 32-turn local Codex CLI audit, it cut estimated token cost from **USD 6.83** on a naive frontier baseline to **USD 1.92** including classifier overhead: **USD 4.90 / 71.8% saved**. Before each turn, a low-cost classifier understands the work and selects an execution model and reasoning effort suited to its difficulty.
+Codex Smart Router is a local semantic control layer for [Codex CLI](https://github.com/openai/codex). In a 42-turn local Codex CLI audit on this repository, it cut estimated token cost from **USD 9.72** on a naive frontier baseline to **USD 3.11** including classifier overhead: **USD 6.62 / 68.0% saved**. Before each turn, a low-cost classifier understands the work and selects an execution model and reasoning effort suited to its difficulty.
 
 Small requests stay economical. Hard work gets stronger reasoning. A local browser dashboard shows whether the trade-off is actually worth it.
 
@@ -30,13 +30,13 @@ Small requests stay economical. Hard work gets stronger reasoning. A local brows
 
 ## Benchmark: one workload, three strategies
 
-The first benchmark is deliberately small and fully disclosed: 32 local Codex CLI turns on 2026-07-10, with the router choosing `gpt-5.4-mini`, `gpt-5.6-luna`, and `gpt-5.6-terra`. Costs use the pricing in [`src/dashboard.mjs`](src/dashboard.mjs), include 19 classifier calls, and apply the same observed token mix to each fixed-model baseline. “Completed” means the App Server reported `completed`; it is an operational completion signal, not a human quality judgment.
+The first benchmark is deliberately small and fully disclosed: 42 local Codex CLI turns on 2026-07-10, with the router choosing `gpt-5.4-mini`, `gpt-5.6-luna`, and `gpt-5.6-terra`. Costs use the pricing in [`src/dashboard.mjs`](src/dashboard.mjs), include classifier overhead, and apply the same observed token mix to each fixed-model baseline. “Completed” means the App Server reported `completed`; it is an operational completion signal, not a human quality judgment.
 
 | Strategy | Estimated cost | Cost vs. router | Completed turns |
 | --- | ---: | ---: | ---: |
-| Naive cheap model (`gpt-5.4-mini`) | USD 1.20* | -37.6% | Not measured* |
-| Smart router | **USD 1.92** | **Baseline** | **28 / 32 (87.5%)** |
-| Naive frontier model (`gpt-5.5`) | USD 6.83 | +254.8% | Not measured* |
+| Naive cheap model (`gpt-5.4-mini`) | USD 1.46* | -53.0% | Not measured* |
+| Smart router | **USD 3.11** | **Baseline** | **42 / 42 (100%)** |
+| Naive frontier model (`gpt-5.5`) | USD 9.72 | +212.9% | Not measured* |
 
 \*These are counterfactual cost estimates, not model replays; the audit only contains executions actually routed. A fixed-model quality comparison will be published once the same prompt suite has been replayed and reviewed. Until then, this table makes no claim that the router improves task success over either fixed model.
 
